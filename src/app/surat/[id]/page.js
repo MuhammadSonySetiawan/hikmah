@@ -53,9 +53,9 @@ async function page({ params : { id } }) {
             return (
               <div
                 key={key}
-                className="flex justify-between items-center w-full p-3 "
+                className="flex henphone:flex-nowrap flex-wrap-reverse justify-between items-center w-full p-3 "
               >
-                <div className="text-sm flex justify-start items-center w-2/4 mr-5 gap-2">
+                <div className="text-sm flex justify-start items-center henphone:w-2/4 w-full mr-5 gap-2">
                   <div className="relative flex justify-center justify-items-center items-center">
                     <UilBrightnessEmpty
                       size="25"
@@ -69,7 +69,9 @@ async function page({ params : { id } }) {
                   </div>
                 </div>
 
-                <h3 className="w-2/4 text-right">{item.teksArab}</h3>
+                <h3 className="henphone:w-2/4 w-full text-right">
+                  {item.teksArab}
+                </h3>
               </div>
             );
           })}

@@ -15,7 +15,7 @@ module.exports = {
        'dan' : "#624BC3"
      },
        screens: {
-      'henphone': '360px',
+      'henphone': '500px',
       // => @media (min-width: 640px) { ... }
     },
       backgroundImage: {
