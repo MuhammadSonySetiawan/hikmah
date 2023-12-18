@@ -4,20 +4,19 @@ import UilBrightnessEmpty from "@iconscout/react-unicons/icons/uil-brightness-em
 import iconMakiyah from "../../../../public/asset/makiyyah.svg"
 import iconBook from "../../../../public/asset/book.svg";
 import Image from 'next/image';
-import iconStart from "../../../../public/asset/Star.svg";
-import Footer from '../Footer/Footer';
+import Link from 'next/link';
+
 async function Content() {
    const response = await fetch("https://equran.id/api/v2/surat");
    const listQuran = await response.json()
     // console.log(listQuran)        
-        
-    
+
   return (
     <>
       <div className="relative w-full grid gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-items-center items-center">
         {listQuran.data?.map((item, key) => {
           return (
-            <div
+            <Link href={`/surat/${item.nomor}`}
               key={key}
               className="w-80 h-20 bg-white rounded flex justify-between items-center gap-2 shadow-lg py-6 px-4"
             >
@@ -27,7 +26,6 @@ async function Content() {
                     size="50"
                     className="text-[#32B7C5] relative"
                   />
-                  {/* <Image src={iconStart} className='w-[50px] h-[50px]'/> */}
                   <h2 className="absolute text-[10px]">{item.nomor}</h2>
                 </div>
                 <div>
@@ -55,7 +53,7 @@ async function Content() {
               <div className="text-sm">
                 <h3>{item.nama}</h3>
               </div>
-            </div>
+            </Link>
           );
         })}
         
