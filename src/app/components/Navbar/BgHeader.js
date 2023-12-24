@@ -7,6 +7,7 @@ function Header() {
     <>
       <Image
         src={BgImage}
+        alt='background-image'
         width={400}
         height={400}
         className="absolute w-full henphone:min-h-[400px] max-h-96 top-0"

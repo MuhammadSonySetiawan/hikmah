@@ -6,12 +6,14 @@ import iconBook from "../../../../public/asset/book.svg";
 import Image from 'next/image';
 import UilBrightnessEmpty from "@iconscout/react-unicons/icons/uil-brightness-empty";
 import Footer from '@/app/components/Footer/Footer';
-
+import UilPlay from "@iconscout/react-unicons/icons/uil-play";
+import UilPause from "@iconscout/react-unicons/icons/uil-pause";
+import Link from 'next/link';
+import AudioPlayer from '@/app/components/Audio/AudioPlayer';
 async function page({ params : { id } }) {
-  console.log(id)
+  
   const IdSurat = await fetch(`https://equran.id/api/v2/surat/${id}`);
   const ResultSurat = await IdSurat.json()
-  console.log(ResultSurat.data.ayat);
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -31,7 +33,12 @@ async function page({ params : { id } }) {
 
           <div className="flex justify-center items-center gap-3 text-[10px]">
             <div className=" flex px-[4px] py-[2px] rounded-lg gap-1 border border-gray-400 w-auto">
-              <Image src={iconMakiyah} width={15} height={15} />
+              <Image
+                src={iconMakiyah}
+                alt="iconMakiyah"
+                width={15}
+                height={15}
+              />
               <p>{ResultSurat.data.tempatTurun}</p>
             </div>
             <div className="flex items-center justify-center w-auto">
@@ -39,14 +46,14 @@ async function page({ params : { id } }) {
             </div>
 
             <div className="flex px-[4px] py-[2px] rounded-lg gap-1 border border-gray-400">
-              <Image src={iconBook} width={15} height={15} />
+              <Image src={iconBook} alt="iconBook" width={15} height={15} />
               <p>{ResultSurat.data.jumlahAyat} Surat</p>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col items-center rounded-b-lg py-3 bg-white justify-center">
-          <h3 className="text-lg mb-3">
+          <h3 className="text-2xl mb-3 ">
             بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
           </h3>
           {ResultSurat.data.ayat.map((item, key) => {
@@ -61,26 +68,65 @@ async function page({ params : { id } }) {
                       size="25"
                       className="text-[#32B7C5] relative"
                     />
-                    <h2 className="absolute text-[8px]">{item.nomorAyat}</h2>
+                    <h2 className="absolute text-[9px]">{item.nomorAyat}</h2>
                   </div>
                   <div>
-                    <p className="text-[#32B7C5]">{item.teksLatin}</p>
+                    <p className="text-[#32B7C5] ">{item.teksLatin}</p>
                     <p>{item.teksIndonesia}</p>
+                    <div className="flex gap-2 mt-2">
+                      <div>
+                        <AudioPlayer
+                          color="text-[#32B7C5]"
+                          src={item.audio["01"]}
+                        />
+                      </div>
+                      <div>
+                        <AudioPlayer
+                          color="text-[#85E6C5]"
+                          src={item.audio["02"]}
+                        />
+                      </div>
+                      <div>
+                        <AudioPlayer
+                          color="text-[#FBE09C]"
+                          src={item.audio["03"]}
+                        />
+                      </div>
+                      <div>
+                        <AudioPlayer
+                          color="text-[#624BC3]"
+                          src={item.audio["04"]}
+                        />
+                      </div>
+                      {/* <Link href={item.audio["01"]}>
+                        <UilPlay size="18" className="text-[#85E6C5]" />
+                      </Link> */}
+                      {/* <Link href={item.audio["01"]}>
+                        <UilPlay size="18" className="text-[#32B7C5]" />
+                      </Link>
+                      <Link href={item.audio["02"]}>
+                        <UilPlay size="18" className="text-[#85E6C5]" />
+                      </Link>
+                      <Link href={item.audio["03"]}>
+                        <UilPlay size="18" className="text-[#FBE09C]" />
+                      </Link>
+                      <Link href={item.audio["04"]}>
+                        <UilPlay size="18" className="text-[#624BC3]" />
+                      </Link> */}
+                    </div>
                   </div>
                 </div>
 
-                <h3 className="henphone:w-2/4 w-full text-right">
+                <h3 className="henphone:w-2/4 w-full text-right text-2xl pb-10 pt-5 px-3">
                   {item.teksArab}
                 </h3>
               </div>
             );
           })}
-
-         
-
+          <hr />
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
