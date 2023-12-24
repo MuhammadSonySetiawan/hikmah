@@ -75,6 +75,10 @@ async function page({ params : { id } }) {
                     <p>{item.teksIndonesia}</p>
                     <div className="flex gap-2 mt-2">
                       <div>
+                        <h1>Your Next.js App</h1>
+                        <AudioPlayer audioUrl={item.audio["01"]} />
+                      </div>
+                      {/* <div>
                         <AudioPlayer
                           color="text-[#32B7C5]"
                           src={item.audio["01"]}
@@ -97,7 +101,7 @@ async function page({ params : { id } }) {
                           color="text-[#624BC3]"
                           src={item.audio["04"]}
                         />
-                      </div>
+                      </div> */}
                       {/* <Link href={item.audio["01"]}>
                         <UilPlay size="18" className="text-[#85E6C5]" />
                       </Link> */}
